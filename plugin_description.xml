@@ -1,0 +1,16 @@
+<library path="lib/libcustom_rviz_plugins">
+  <class name="custom_rviz_plugins/AddPose"
+         type="rviz::AddPoseTool"
+         base_class_type="rviz::Tool">
+    <description>
+      A tool allowing users to publish the clicked position.
+    </description>
+  </class>
+  <class name="custom_rviz_plugins/RobotPanel"
+         type="custom_rviz_plugin::RobotUIPanel"
+         base_class_type="rviz::Panel">
+    <description>
+      A custom panel that provides the user a Robot UI for movebase robots.
+    </description>
+  </class>
+</library>
