@@ -208,7 +208,7 @@ namespace custom_rviz_plugin
         _new_waypoint_name_editor->clear();
         clear_current_waypoint();
         ROS_INFO("Successfully Added!");
-        _status_info->setText(QString("Successfully Added!"));
+        _status_info->setText(QString("Successfully Added " + QString::fromStdString(wp_name) + "!") );
     }
 
     void RobotUIPanel::clear_current_waypoint()
@@ -335,7 +335,6 @@ namespace custom_rviz_plugin
                 std::string status_text = "Attempting to connect with move_base server (" + std::to_string(count) + "/" + std::to_string(wait_attempt_lmt + 1) + ")";
                 _nav_status_info->setText(QString::fromStdString(status_text));
                 count++;
-                Q_EMIT configChanged();
             }
         }
         std::string goal_name = _sel_waypoint_selector->currentText().toStdString();
@@ -346,6 +345,8 @@ namespace custom_rviz_plugin
         goal.target_pose.pose = goal_pose;
 
         _robot_client.sendGoal(goal);
+        _nav_status_info->setText(QString("Goal successful sent"));
+        Q_EMIT configChanged();
     }
 
     void RobotUIPanel::cancel_task()
